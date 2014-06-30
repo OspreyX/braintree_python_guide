@@ -1,4 +1,9 @@
-import urlparse
+import sys
+
+if sys.version_info[0] == 2:
+    import urlparse
+else:
+    import urllib.parse as urlparse
 
 from flask import Flask, request, render_template
 app = Flask(__name__)

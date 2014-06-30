@@ -59,7 +59,10 @@ def webhook():
 
     elif request.method == "POST":
         webhook_notification = braintree.WebhookNotification.parse(str(request.form['bt_signature']), request.form['bt_payload'])
-        print "[Webhook Received " + webhook_notification.timestamp.strftime("%A %d %B %Y %I:%M%p") + "] | Kind: " + webhook_notification.kind + " | Subscription: " + webhook_notification.subscription.id
+        print("[Webhook Received {}] | Kind: {} | Subscription: {}".format(
+                webhook_notification.timestamp.strftime("%A %d %B %Y %I:%M%p"),
+                webhook_notification.kind,
+                webhook_notification.subscription.id))
         return Response(status=200)
 
 if __name__ == '__main__':
